@@ -11,6 +11,7 @@ interface ApiService {
     fun getPlaylists(
         @Query("key") key: String,
         @Query("part") part: String,
-        @Query("channelId") channelId: String
+        @Query("channelId") channelId: String,
+        @Query("maxResults") maxResult: Int = 25
     ): Call<PlayList>
 }
