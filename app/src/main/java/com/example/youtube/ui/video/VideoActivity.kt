@@ -1,21 +1,22 @@
 package com.example.youtube.ui.video
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.example.youtube.R
+import androidx.appcompat.app.AppCompatActivity
+import com.example.youtube.databinding.ActivityVideoBinding
 import com.example.youtube.ui.playlist.PlaylistActivity
 
 class VideoActivity : AppCompatActivity() {
-
-    private lateinit var intentVideo: Intent
+    private lateinit var binding: ActivityVideoBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_video)
-        intentVideo = intent
-        val id = intentVideo.getStringExtra(PlaylistActivity.KEY_FOR_PLAYLISTS)!!
+        binding = ActivityVideoBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val intent = intent
+        val id = intent.getStringExtra(PlaylistActivity.KEY_FOR_PLAYLISTS)
+        binding.textId.text = id
         Toast.makeText(this, id, Toast.LENGTH_SHORT).show()
     }
 }

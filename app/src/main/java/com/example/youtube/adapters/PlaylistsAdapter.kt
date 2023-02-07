@@ -33,6 +33,7 @@ class PlaylistsAdapter(val onClick: (id: String) -> Unit) :
 
     @SuppressLint("NotifyDataSetChanged")
     fun addPlaylists(playlist: List<ItemsData>) {
+        playlists.clear()
         playlists.addAll(playlist)
         notifyDataSetChanged()
     }
