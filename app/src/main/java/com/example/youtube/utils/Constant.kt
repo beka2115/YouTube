@@ -1,4 +1,4 @@
-package com.example.youtube.`object`
+package com.example.youtube.utils
 
 object Constant {
     const val part = "snippet,contentDetails"

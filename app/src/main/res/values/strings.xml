@@ -5,4 +5,6 @@
     <string name="try_again">TRY AGAIN</string>
     <string name="id">id</string>
     <string name="title">title</string>
+    <string name="_0_video_series">0 video series</string>
+    <string name="playlist">playlist</string>
 </resources>

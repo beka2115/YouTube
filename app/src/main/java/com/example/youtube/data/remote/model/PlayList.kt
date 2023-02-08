@@ -8,21 +8,26 @@ data class PlayList(
 data class ItemsData(
     val snippet: SnippetData,
     val id: String,
+    val contentDetails: ContentDetails
 )
 
-data class SnippetData (
+data class ContentDetails(
+    val itemCount: Int
+)
+
+data class SnippetData(
     val description: String,
-    val title:String,
+    val title: String,
     val thumbnails: Thumbnails
 )
 
 data class Thumbnails(
-    val standard:Standard
+    val standard: Standard
 )
 
-data class Standard (
-    val url:String,
-    val height:Int,
-    val width:Int
-        )
+data class Standard(
+    val url: String,
+    val height: Int,
+    val width: Int
+)
 

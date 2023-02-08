@@ -2,12 +2,13 @@ package com.example.youtube.ui.playlist
 
 import android.content.Intent
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.youtube.connectionChek.ConnectionLiveData
-import com.example.youtube.adapters.PlaylistsAdapter
+import com.example.youtube.core.comon.connectionChek.ConnectionLiveData
+import com.example.youtube.core.network.result.Status
 import com.example.youtube.ui.video.VideoActivity
-import com.example.youtube.base.BaseActivity
+import com.example.youtube.core.ui.BaseActivity
 import com.example.youtube.databinding.ActivityPlaylistsBinding
 
 class PlaylistActivity : BaseActivity<ActivityPlaylistsBinding, PlayListsViewModel>() {
@@ -26,8 +27,23 @@ class PlaylistActivity : BaseActivity<ActivityPlaylistsBinding, PlayListsViewMod
     override fun initViewModel() {
         super.initViewModel()
         viewModel = ViewModelProvider(this)[PlayListsViewModel::class.java]
-        viewModel.playlists().observe(this) {
-            adapter.addPlaylists(it.items)
+        viewModel.getPlaylists().observe(this) {
+
+            when(it.status){
+
+                Status.SUCCESS -> {
+                    it.data?.let { it1 -> adapter.addPlaylists(it1.items) }
+                }
+                Status.LOADING -> {
+                    Toast.makeText(this, "Loading", Toast.LENGTH_SHORT).show()
+                }
+                Status.ERROR -> {
+                    Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                }
+
+            }
+
+
         }
     }
 

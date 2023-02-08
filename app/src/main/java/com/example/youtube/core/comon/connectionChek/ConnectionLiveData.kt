@@ -1,4 +1,4 @@
-package com.example.youtube.connectionChek
+package com.example.youtube.core.comon.connectionChek
 
 import android.annotation.SuppressLint
 import android.app.Application

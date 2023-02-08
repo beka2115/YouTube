@@ -1,4 +1,4 @@
-package com.example.youtube.adapters
+package com.example.youtube.ui.playlist
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -40,6 +40,7 @@ class PlaylistsAdapter(val onClick: (id: String) -> Unit) :
 
     inner class PlaylistsViewHolder(private val binding: ItemPlaylistsBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind(playlist: ItemsData) {
             with(binding) {
                 itemView.setOnClickListener {
@@ -47,6 +48,7 @@ class PlaylistsAdapter(val onClick: (id: String) -> Unit) :
                 }
                 textTitle.text = playlist.snippet.title
                 Glide.with(imgVideo).load(playlist.snippet.thumbnails.standard.url).into(imgVideo)
+                videoCount.text= "${playlist.contentDetails.itemCount} video series"
             }
         }
     }
