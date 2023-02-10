@@ -15,4 +15,14 @@
     <dimen name="sp12">12sp</dimen>
     <dimen name="dp26">26dp</dimen>
     <dimen name="sp20">20sp</dimen>
+    <dimen name="dp55">55dp</dimen>
+    <dimen name="dp4">4dp</dimen>
+    <dimen name="dp28">28dp</dimen>
+    <dimen name="sp18">18sp</dimen>
+    <dimen name="sp22">22sp</dimen>
+    <dimen name="dp240">240dp</dimen>
+    <dimen name="dp2">2dp</dimen>
+    <dimen name="dp20">20dp</dimen>
+    <dimen name="dp12">12dp</dimen>
+    <dimen name="dp0">0dp</dimen>
 </resources>

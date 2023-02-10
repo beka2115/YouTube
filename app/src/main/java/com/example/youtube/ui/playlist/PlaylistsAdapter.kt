@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.example.youtube.ItemsData
 import com.example.youtube.databinding.ItemPlaylistsBinding
 
-class PlaylistsAdapter(val onClick: (id: String) -> Unit) :
+class PlaylistsAdapter(val onClick: (id: String, itemCount: Int, title: String, desc: String) -> Unit) :
     RecyclerView.Adapter<PlaylistsAdapter.PlaylistsViewHolder>() {
 
     private var playlists = arrayListOf<ItemsData>()
@@ -35,6 +35,7 @@ class PlaylistsAdapter(val onClick: (id: String) -> Unit) :
     fun addPlaylists(playlist: List<ItemsData>) {
         playlists.clear()
         playlists.addAll(playlist)
+        playlists.removeAt(0)
         notifyDataSetChanged()
     }
 
@@ -43,14 +44,23 @@ class PlaylistsAdapter(val onClick: (id: String) -> Unit) :
         @SuppressLint("SetTextI18n")
         fun bind(playlist: ItemsData) {
             with(binding) {
-                itemView.setOnClickListener {
-                    onClick(playlist.id)
-                }
+                initClickers(playlist)
                 textTitle.text = playlist.snippet.title
-                Glide.with(imgVideo).load(playlist.snippet.thumbnails.standard.url).into(imgVideo)
-                videoCount.text= "${playlist.contentDetails.itemCount} video series"
+                Glide.with(imgVideo).load(playlist?.snippet?.thumbnails?.maxres?.url)
+                    .into(imgVideo)
+                videoCount.text = "${playlist.contentDetails.itemCount} video series"
+            }
+        }
+
+        private fun initClickers(playlist: ItemsData) {
+            itemView.setOnClickListener {
+                onClick(
+                    playlist.id,
+                    playlist.contentDetails.itemCount,
+                    playlist.snippet.title,
+                    playlist.snippet.description
+                )
             }
         }
     }
-
 }

@@ -1,8 +1,18 @@
 package com.example.youtube
 
+import android.graphics.pdf.PdfDocument.PageInfo
+
 data class PlayList(
     val kind: String?,
-    val items: List<ItemsData>
+    val items: List<ItemsData>,
+    val prevPageToken: String,
+    val nextPageToken: String,
+    val pageInfo:com.example.youtube.PageInfo
+)
+
+data class PageInfo(
+    val resultsPerPage: Int,
+    val totalResults: Int
 )
 
 data class ItemsData(
@@ -22,10 +32,10 @@ data class SnippetData(
 )
 
 data class Thumbnails(
-    val standard: Standard
+    val maxres: Maxres
 )
 
-data class Standard(
+data class Maxres(
     val url: String,
     val height: Int,
     val width: Int
