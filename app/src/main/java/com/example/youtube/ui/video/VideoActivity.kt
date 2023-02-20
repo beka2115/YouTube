@@ -1,6 +1,7 @@
 package com.example.youtube.ui.video
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,16 +9,21 @@ import com.example.youtube.core.comon.connectionChek.ConnectionLiveData
 import com.example.youtube.core.network.result.Status
 import com.example.youtube.core.ui.BaseActivity
 import com.example.youtube.databinding.ActivityVideoBinding
+import com.example.youtube.ui.player.PlayerActivity
 import com.example.youtube.ui.playlist.PlaylistActivity
 
 class VideoActivity : BaseActivity<ActivityVideoBinding, VideoViewModel>() {
+
     private lateinit var cld: ConnectionLiveData
-    private val adapter = VideoAdapter()
+    private val adapter = VideoAdapter(this::onClick)
     private var playlistId: String? = null
     private var itemCount: Int = 1
     private var title: String? = null
     private var description: String? = null
     private var intentList = arrayListOf<String>()
+    companion object{
+       const val KEY_FOR_VIDEO = "key_video"
+    }
     override fun inflateViewBinding(): ActivityVideoBinding {
         return ActivityVideoBinding.inflate(layoutInflater)
     }
@@ -57,10 +63,13 @@ class VideoActivity : BaseActivity<ActivityVideoBinding, VideoViewModel>() {
 
     override fun initListener() {
         super.initListener()
-        binding.btnBack.setOnClickListener {
-            finish()
+        with(binding) {
+            btnBack.setOnClickListener {
+                finish()
+            }
         }
     }
+
 
     private fun getData() {
         playlistId?.let {
@@ -93,6 +102,12 @@ class VideoActivity : BaseActivity<ActivityVideoBinding, VideoViewModel>() {
         itemCount = intentList[1].toInt()
         title = intentList[2]
         description = intentList[3]
+    }
+
+    private fun onClick(id:String){
+        val intent = Intent(this, PlayerActivity::class.java)
+        intent.putExtra(KEY_FOR_VIDEO,id)
+        startActivity(intent)
     }
 
 }

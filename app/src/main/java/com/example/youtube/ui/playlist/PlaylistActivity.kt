@@ -63,7 +63,6 @@ class PlaylistActivity : BaseActivity<ActivityPlaylistsBinding, PlayListsViewMod
                     binding.progress.progress.visibility = View.GONE
                 }
                 Status.LOADING -> {
-                    Toast.makeText(this, "Loading", Toast.LENGTH_SHORT).show()
                     binding.progress.progress.visibility = View.VISIBLE
                 }
                 Status.ERROR -> {

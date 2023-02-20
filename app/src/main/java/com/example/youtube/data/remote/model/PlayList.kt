@@ -4,15 +4,7 @@ import android.graphics.pdf.PdfDocument.PageInfo
 
 data class PlayList(
     val kind: String?,
-    val items: List<ItemsData>,
-    val prevPageToken: String,
-    val nextPageToken: String,
-    val pageInfo:com.example.youtube.PageInfo
-)
-
-data class PageInfo(
-    val resultsPerPage: Int,
-    val totalResults: Int
+    val items: List<ItemsData>
 )
 
 data class ItemsData(
@@ -22,7 +14,8 @@ data class ItemsData(
 )
 
 data class ContentDetails(
-    val itemCount: Int
+    val itemCount: Int,
+    val videoId: String
 )
 
 data class SnippetData(

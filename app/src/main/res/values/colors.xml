@@ -10,4 +10,6 @@
     <color name="dark_white">#EFF1F1</color>
     <color name="red">#FF0000</color>
     <color name="play_list_black">#CC000000</color>
+    <color name="title_black">#333333</color>
+    <color name="grey">#33636262</color>
 </resources>
